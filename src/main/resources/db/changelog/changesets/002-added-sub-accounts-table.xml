@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.9.xsd">
+
+    <changeSet id="added-sub-account-table" author="matuszewskip">
+        <createTable tableName="subaccounts">
+            <column name="id" type="bigint" autoIncrement="true" remarks="sub-account identifer">
+                <constraints nullable="false" primaryKey="true" unique="true"/>
+            </column>
+            <column name="account_id" type="bigint" remarks="account id">
+                <constraints nullable="false" foreignKeyName="fk_subaccount_account" references="accounts(id)"/>
+            </column>
+            <column name="currency" type="varchar(3)" remarks="currency code">
+                <constraints nullable="false"/>
+            </column>
+            <column name="balance" type="double" defaultValueNumeric="0" remarks="balance"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
