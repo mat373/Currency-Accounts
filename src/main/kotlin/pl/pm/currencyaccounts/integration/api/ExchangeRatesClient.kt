@@ -18,14 +18,14 @@ internal class ExchangeRatesClient(private val client: WebClient) {
             .uri(createUrl(currency))
             .accept(MediaType.APPLICATION_JSON)
             .retrieve()
-            .bodyToFlux(CurrencyExchangeRate::class.java)
-            .flatMap(::mapExchangeRates)
+            .bodyToMono(CurrencyExchangeRate::class.java)
+            .flatMapMany(::mapExchangeRates)
 
     private fun mapExchangeRates(response: CurrencyExchangeRate) =
         response
             .rates
-            .toFlux()
             .map { Pair(CurrencyRate(it.effectiveDate, it.bid, it.ask), response.code) }
+            .toFlux()
 }
 
 
