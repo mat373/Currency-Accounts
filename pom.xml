@@ -126,6 +126,11 @@
             <version>4.0.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>pl.foltak.polish-identification-numbers-utils</groupId>
+            <artifactId>polish-identification-numbers-utils</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>
