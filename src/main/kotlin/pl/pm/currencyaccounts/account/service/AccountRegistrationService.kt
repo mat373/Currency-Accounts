@@ -10,7 +10,6 @@ class AccountRegistrationService(
     private val validator: AccountValidator,
     private val daoService: AccountDaoService
 ) {
-
     fun registerAccount(account: AccountDTO) =
         validator
             .validate(account)
