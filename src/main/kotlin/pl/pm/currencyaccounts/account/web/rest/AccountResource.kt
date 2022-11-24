@@ -20,6 +20,6 @@ class AccountResource(
         acconutService.registerAccount(account)
 
     @GetMapping("{personalId}")
-    fun registerAccount(@PathVariable personalId: String) =
+    fun getAccount(@PathVariable personalId: String) =
         acconutService.getAccountByPersonalId(personalId)
 }
