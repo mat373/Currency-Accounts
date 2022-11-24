@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service
 import pl.pm.currencyaccounts.account.model.dto.AccountDTO
 import pl.pm.currencyaccounts.account.validation.AccountValidator
 import reactor.kotlin.core.publisher.toFlux
-
 @Service
 class AccountRegistrationService(
     private val validator: AccountValidator,

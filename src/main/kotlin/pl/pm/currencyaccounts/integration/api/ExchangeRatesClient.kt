@@ -17,10 +17,7 @@ internal class ExchangeRatesClient(private val client: WebClient) {
     companion object {
         private val log = LoggerFactory.getLogger(this::class.java)
     }
-    fun getExchangeRates(
-        currency: Currency,
-        localDate: LocalDate
-    ): Mono<Pair<CurrencyRate, Currency>> {
+    fun getExchangeRates(currency: Currency, localDate: LocalDate): Mono<Pair<CurrencyRate, Currency>> {
         log.trace("Get currency rate currency: $currency and date: $localDate")
         return client.get()
             .uri(createUrl(currency, localDate))
@@ -30,7 +27,6 @@ internal class ExchangeRatesClient(private val client: WebClient) {
             .flatMapMany(::mapExchangeRates)
             .next()
     }
-
     private fun mapExchangeRates(response: CurrencyExchangeRate) =
         response
             .rates

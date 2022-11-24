@@ -15,7 +15,6 @@ class ExchangeService(
     private val accountService: AccountServiceFacade,
     private val exchangeRatesService: ExchangeRatesService
 ) {
-
     @Transactional
     fun exchange(exchange: Exchange) =
         getExchangeValue(exchange)
@@ -27,10 +26,7 @@ class ExchangeService(
         accountService.getAccountByPersonalId(exchange.personalId)
             .flatMap { account -> updateBalance(exchange, account) }
 
-    private fun updateBalance(
-        exchange: Exchange,
-        account: AccountView
-    ) =
+    private fun updateBalance(exchange: Exchange, account: AccountView) =
         exchangeRatesService.getCurrencyExchangeRate(exchange.currencyFrom, exchange.currencyTo)
             .map { rate -> exchange.amountFrom * rate }
             .flatMap { amountTo -> updateBalance(account, exchange, amountTo) }
@@ -47,7 +43,6 @@ class ExchangeService(
                     )
                 }
             }
-
     private fun getSubAccounts(account: AccountView, exchange: Exchange) =
         account.getSubAccount(exchange.currencyFrom) to account.getSubAccount(exchange.currencyTo)
 }

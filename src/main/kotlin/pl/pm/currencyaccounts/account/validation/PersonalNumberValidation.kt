@@ -6,7 +6,6 @@ import pl.pm.currencyaccounts.account.model.dto.AccountDTO
 
 @Component
 class PersonalNumberValidation : AccountValidation {
-
     override fun invoke(account: AccountDTO): Boolean =
         PeselValidator().isValid(account.personalId)
 }

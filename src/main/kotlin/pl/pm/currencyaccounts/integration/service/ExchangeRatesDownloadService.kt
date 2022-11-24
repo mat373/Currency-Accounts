@@ -12,7 +12,6 @@ import java.math.RoundingMode
 
 import reactor.kotlin.core.util.function.component1
 import reactor.kotlin.core.util.function.component2
-
 interface ExchangeRatesService {
     fun getCurrencyExchangeRate(currency: Currency): Mono<Pair<CurrencyRate, Currency>>
 

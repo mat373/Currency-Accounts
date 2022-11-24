@@ -24,23 +24,26 @@ class AccountDaoService(
         private val log = LoggerFactory.getLogger(this::class.java)
     }
 
-    fun save(account: AccountDTO) = accountRepository
-        .save(Account.of(account))
-        .doOnSuccess { log.info("Account saved: ${it.personalId}") }
-        .doOnError { throw DuplicateAccountException(account.personalId) }
-        .flatMap { getAccount(it, account.balance) }
+    fun save(account: AccountDTO) =
+        accountRepository
+            .save(Account.of(account))
+            .doOnSuccess { log.info("Account saved: ${it.personalId}") }
+            .doOnError { throw DuplicateAccountException(account.personalId) }
+            .flatMap { getAccount(it, account.balance) }
 
     fun updateSubAccount(subAccounts: List<SubAccount>) =
         subAccountRepository.saveAll(subAccounts)
 
-    fun getAccountByPersonalId(personalId: String) = accountRepository
-        .findByPersonalId(personalId)
-        .flatMap(::getSubAccounts)
+    fun getAccountByPersonalId(personalId: String) =
+        accountRepository
+            .findByPersonalId(personalId)
+            .flatMap(::getSubAccounts)
 
-    private fun getAccount(account: Account, balance: BigDecimal) = subAccountRepository
-        .saveAll(getSubAccountWithDefault(account, balance))
-        .collectList()
-        .map { AccountView(account, it) }
+    private fun getAccount(account: Account, balance: BigDecimal) =
+        subAccountRepository
+            .saveAll(getSubAccountWithDefault(account, balance))
+            .collectList()
+            .map { AccountView(account, it) }
 
     private fun getSubAccounts(account: Account) =
         account
