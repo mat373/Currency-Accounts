@@ -1,5 +1,6 @@
 package pl.pm.currencyaccounts.core.enum
 
+import pl.pm.currencyaccounts.core.util.getDefault
 import pl.pm.currencyaccounts.core.util.ignoreDefault
 
 enum class Currency {
@@ -7,9 +8,9 @@ enum class Currency {
     USD;
 
     companion object {
-        fun exists(currency: String) =
-            values()
-                .filter { ignoreDefault(it) }
-                .any { it.name == currency }
+        fun getWithoutDefault() =
+            Currency
+                .values()
+                .filter { it != getDefault() }
     }
 }

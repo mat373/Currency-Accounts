@@ -6,4 +6,4 @@ import java.util.*
 fun ignoreDefault(it: Currency) =
     it != Currency.valueOf(java.util.Currency.getInstance(Locale.getDefault()).currencyCode)
 fun getDefault() =
-    Currency.valueOf(java.util.Currency.getInstance(Locale.getDefault()).currencyCode)
+    Currency.PLN

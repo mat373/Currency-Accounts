@@ -12,6 +12,5 @@ data class AccountView(
 
     fun getSubAccount(currency: Currency) =
         subAccounts
-            .find { it.currency == currency }
-            ?: throw SubAccountNotFoundException(account.personalId, currency)
+            .first { subAccount -> subAccount.currency == currency }
 }

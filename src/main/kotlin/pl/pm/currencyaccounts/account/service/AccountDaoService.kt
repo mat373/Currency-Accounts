@@ -11,7 +11,6 @@ import pl.pm.currencyaccounts.account.repository.SubAccountRepository
 import pl.pm.currencyaccounts.core.enum.Currency
 import pl.pm.currencyaccounts.core.exception.DuplicateAccountException
 import pl.pm.currencyaccounts.core.util.getDefault
-import pl.pm.currencyaccounts.exchange.model.Exchange
 import reactor.kotlin.core.publisher.toMono
 import java.math.BigDecimal
 
@@ -31,10 +30,8 @@ class AccountDaoService(
         .doOnError { throw DuplicateAccountException(account.personalId) }
         .flatMap { getAccount(it, account.balance) }
 
-    fun updateSubAccount(exchange: Exchange, balance: BigDecimal) =
-        subAccountRepository.findByAccountIdAndAndCurrency(exchange.accountId, exchange.currency)
-            .map { it.copy(balance = balance) }
-            .map(subAccountRepository::save)
+    fun updateSubAccount(subAccounts: List<SubAccount>) =
+        subAccountRepository.saveAll(subAccounts)
 
     fun getAccountByPersonalId(personalId: String) = accountRepository
         .findByPersonalId(personalId)
@@ -59,6 +56,6 @@ class AccountDaoService(
 
     private fun mapSubAccounts(account: Account) = Currency
         .values()
-        .filter { Currency.exists(it.name) }
-        .map { SubAccount(accountId = account.id, currency = it, balance = BigDecimal.ZERO) }
+        .filter { it != Currency.PLN }
+        .map { SubAccount(accountId = account.id, currency = Currency.USD, balance = BigDecimal.ZERO) }
 }

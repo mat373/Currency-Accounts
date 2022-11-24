@@ -11,5 +11,5 @@ import reactor.core.publisher.Mono
 interface SubAccountRepository : R2dbcRepository<SubAccount, Long> {
 
     fun findAllByAccountId(accountId: Long): Flux<SubAccount>
-    fun findByAccountIdAndAndCurrency(accountId: Long, currency: Currency): Mono<SubAccount>
+    fun findByAccountId(accountId: Long): Mono<SubAccount>
 }

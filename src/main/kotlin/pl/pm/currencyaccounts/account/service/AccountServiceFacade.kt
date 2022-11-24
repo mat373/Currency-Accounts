@@ -1,7 +1,9 @@
 package pl.pm.currencyaccounts.account.service
 
 import org.springframework.stereotype.Service
+import pl.pm.currencyaccounts.account.model.SubAccount
 import pl.pm.currencyaccounts.account.model.dto.AccountDTO
+import pl.pm.currencyaccounts.core.enum.Currency
 import pl.pm.currencyaccounts.exchange.model.Exchange
 import java.math.BigDecimal
 
@@ -18,6 +20,6 @@ class AccountServiceFacade(
     fun registerAccount(account: AccountDTO) =
         registrationService.registerAccount(account)
 
-    fun updateBalance(exchange: Exchange, balance: BigDecimal) =
-        updateService.updateAccountBalance(exchange, balance)
+    fun updateBalance(subAccounts: List<SubAccount>) =
+        updateService.updateAccountBalance(subAccounts)
 }
