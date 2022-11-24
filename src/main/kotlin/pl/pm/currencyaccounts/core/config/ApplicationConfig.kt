@@ -6,5 +6,4 @@ import org.springframework.scheduling.annotation.EnableScheduling
 @Configuration
 @EnableScheduling
 @EnableR2dbcRepositories
-class ApplicationConfig {
-}
+class ApplicationConfig {}

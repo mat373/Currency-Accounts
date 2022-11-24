@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap
 internal class ExchangeRatesCache(
     private val client: ExchangeRatesClient
 ) {
-
     private val cache = client::getExchangeRates.memoize()
     fun findActualMono(currency: Currency) = cache(currency, LocalDate.now())
 }

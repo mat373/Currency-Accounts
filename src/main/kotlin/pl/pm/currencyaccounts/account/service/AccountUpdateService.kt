@@ -10,7 +10,6 @@ import java.math.BigDecimal
 class AccountUpdateService(
     private val daoService: AccountDaoService
 ) {
-
     fun updateAccountBalance(subAccounts: List<SubAccount>) =
         daoService.updateSubAccount(subAccounts)
 }

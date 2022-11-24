@@ -18,7 +18,6 @@ interface ExchangeRatesService {
 
     fun getCurrencyExchangeRate(currencyFrom: Currency, currencyTo: Currency): Mono<BigDecimal>
 }
-
 @Component
 internal class ExchangeRatesClientService(private val cache: ExchangeRatesCache) : ExchangeRatesService {
 
