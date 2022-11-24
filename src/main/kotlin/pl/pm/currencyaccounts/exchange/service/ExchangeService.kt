@@ -15,6 +15,7 @@ class ExchangeService(
     private val accountService: AccountServiceFacade,
     private val exchangeRatesService: ExchangeRatesService
 ) {
+
     @Transactional
     fun exchange(exchange: Exchange) =
         getExchangeValue(exchange)
@@ -43,6 +44,7 @@ class ExchangeService(
                     )
                 }
             }
+
     private fun getSubAccounts(account: AccountView, exchange: Exchange) =
         account.getSubAccount(exchange.currencyFrom) to account.getSubAccount(exchange.currencyTo)
 }

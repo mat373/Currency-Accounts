@@ -8,6 +8,7 @@ import java.time.LocalDate
 
 @Component
 class AdultAgeValidation : AccountValidation {
+
     override fun invoke(account: AccountDTO): Boolean =
         Pesel(account.personalId)
             .birthDate

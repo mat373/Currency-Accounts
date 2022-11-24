@@ -26,6 +26,7 @@ internal class ExchangeRatesClient(private val client: WebClient) {
             .bodyToMono(CurrencyExchangeRate::class.java)
             .flatMapMany(::mapExchangeRates)
             .next()
+            .cache()
     }
     private fun mapExchangeRates(response: CurrencyExchangeRate) =
         response

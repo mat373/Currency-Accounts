@@ -10,5 +10,5 @@ internal class ExchangeRatesCache(
     private val client: ExchangeRatesClient
 ) {
     private val cache = client::getExchangeRates.memoize()
-    fun findActualMono(currency: Currency) = cache(currency, LocalDate.now())
+    fun getActualRate(currency: Currency) = cache(currency, LocalDate.now())
 }

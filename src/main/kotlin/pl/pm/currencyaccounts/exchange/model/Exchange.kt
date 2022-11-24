@@ -7,6 +7,7 @@ import java.math.BigDecimal
 /***
  * @param amountFrom - given amount in currencyFrom
  */
+
 data class Exchange (
     val personalId: PersonalId,
     val currencyFrom: Currency,

@@ -8,6 +8,7 @@ data class AccountView(
     val account: Account,
     val subAccounts: List<SubAccount>
 ) {
+
     fun getSubAccount(currency: Currency) =
         subAccounts
             .first { subAccount -> subAccount.currency == currency }

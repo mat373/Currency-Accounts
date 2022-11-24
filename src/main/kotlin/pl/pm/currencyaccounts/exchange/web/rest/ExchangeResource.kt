@@ -10,6 +10,7 @@ import pl.pm.currencyaccounts.exchange.service.ExchangeService
 @RestController
 @RequestMapping("/api/exchange")
 class ExchangeResource(private val exchangeService: ExchangeService) {
+
     @PostMapping
     fun exchange(@RequestBody exchange: Exchange) =
         exchangeService.exchange(exchange)

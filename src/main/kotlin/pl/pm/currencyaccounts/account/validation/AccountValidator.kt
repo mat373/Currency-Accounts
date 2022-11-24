@@ -10,6 +10,7 @@ import reactor.kotlin.core.publisher.toMono
 
 @Component
 class AccountValidator(private val validations: List<AccountValidation>) {
+
     fun validate(account: AccountDTO) =
         validations
             .toFlux()

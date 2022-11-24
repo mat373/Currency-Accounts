@@ -18,10 +18,8 @@ class AbstractResourceTest extends Specification {
     protected WebTestClient webTestClient
 
     @Autowired
-    protected
-    AccountRepository accountRepository
+    protected AccountRepository accountRepository
 
     @Autowired
-    protected
-    SubAccountRepository subAccountRepository
+    protected SubAccountRepository subAccountRepository
 }

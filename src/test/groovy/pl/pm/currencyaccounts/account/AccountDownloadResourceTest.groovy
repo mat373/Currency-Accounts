@@ -95,6 +95,4 @@ class AccountDownloadResourceTest extends AbstractResourceTest {
                 }
                 .verifyComplete()
     }
-
-
 }
