@@ -35,6 +35,6 @@ internal class ExchangeRatesClientService(private val cache: ExchangeRatesCache)
         when (currencyTo) {
             Currency.PLN -> BigDecimal.ONE.setScale(2, RoundingMode.HALF_UP).toMono()
             else -> cache.findActualMono(currencyTo)
-                .map { (currencyRate, _) -> currencyRate.ask.setScale(2, RoundingMode.HALF_UP) }
+                .map { (currencyRate, _) -> currencyRate.bid.setScale(2, RoundingMode.HALF_UP) }
         }
 }
