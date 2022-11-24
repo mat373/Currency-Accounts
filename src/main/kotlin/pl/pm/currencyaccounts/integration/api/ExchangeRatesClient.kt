@@ -24,7 +24,7 @@ internal class ExchangeRatesClient(private val client: WebClient) {
     private fun mapExchangeRates(response: CurrencyExchangeRate) =
         response
             .rates
-            .map { Pair(CurrencyRate(it.effectiveDate, it.bid, it.ask), response.code) }
+            .map { CurrencyRate(it.effectiveDate, it.bid, it.ask) to response.code }
             .toFlux()
 }
 

@@ -1,4 +1,4 @@
-package pl.pm.currencyaccounts.integration.scheduler
+package pl.pm.currencyaccounts.integration.service
 
 import org.slf4j.LoggerFactory
 import org.springframework.context.annotation.Profile
@@ -11,7 +11,7 @@ import reactor.kotlin.core.publisher.toFlux
 
 @Component
 @Profile("!test")
-internal class ExchangeRatesScheduler(
+internal class ExchangeRatesUpdateService(
     private val client: ExchangeRatesClient,
     private val cache: ExchangeRatesCache
 ) {
